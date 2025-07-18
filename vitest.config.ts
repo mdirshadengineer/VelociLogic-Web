@@ -36,7 +36,7 @@ export default defineConfig({
       {
         test: {
           name: "app",
-          include: ["src/app/__tests__/**/*.{test,spec}.{ts,tsx}"],
+          include: ["src/**/__tests__/**/*.{test,spec}.{ts,tsx}"],
           exclude: [
             "**/node_modules/**",
             "**/dist/**",
@@ -64,6 +64,20 @@ export default defineConfig({
           }),
         ],
       },
+      {
+        test: {
+          name: 'e2e',
+          include: ['**/e2e/**/*.{test,spec}.{ts,tsx}'],
+          exclude: ['**/node_modules/**', '**/dist/**', '**/.{idea,git,cache,output,temp}/**'],
+          browser: {
+            enabled: true,
+            provider: 'playwright',
+            headless: true,
+            instances: [{ browser: 'chromium' }]
+          },
+          setupFiles: ['./e2e/setup.ts']
+        }
+      }
     ],
   },
 });
