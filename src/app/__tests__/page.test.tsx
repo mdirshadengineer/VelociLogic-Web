@@ -1,13 +1,15 @@
-import React from "react";
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import Page from "../page";
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
-describe("Landing Page", () => {
-  it("renders heading", () => {
+import Page from '../page';
+
+import React from 'react';
+
+describe('Landing Page', () => {
+  it('renders heading', () => {
     render(<Page />);
     expect(
-      screen.getByRole("heading", { level: 1, name: /welcome/i })
+      screen.getByRole('heading', { level: 1, name: /welcome/i })
     ).toBeInTheDocument();
   });
 });
