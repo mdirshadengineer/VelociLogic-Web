@@ -1,0 +1,7 @@
+# Abort if nothing is staged
+if [ -z "$(git diff --cached --name-only)" ]; then
+  echo "🛑 Nothing staged for commit. Use 'git add .' first."
+  exit 1
+fi
+
+npm run lint-staged --concurrent false
