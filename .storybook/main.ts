@@ -10,14 +10,10 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: '@storybook/nextjs-vite',
-    options: {
-      builder: {
-        viteConfigPath: '../vitest.config.ts',
-      },
-    },
+    options: {},
   },
-  docs: {
-    docsMode: true,
+  viteFinal: config => {
+    return config;
   },
   staticDirs: ['..\\public'],
 };

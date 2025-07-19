@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
 /// <reference types="vitest/config" />
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import reactSwc from '@vitejs/plugin-react-swc';
@@ -21,22 +22,29 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
+    include: ['**\/*.{test,spec}.?(c|m)[jt]s?(x)'],
     browser: {
       headless: true,
       provider: 'playwright',
+      instances: [{ browser: 'chromium' }],
     },
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],
-      include: ['src/**/*.{ts,tsx}'],
+      include: [
+        'src/**/*.{ts,tsx}',
+        '__tests__/**/*.{ts,tsx}',
+        '__e2e__/**/*.{ts,tsx}',
+        '__integrations__/**/*.{ts,tsx}',
+      ],
       exclude: ['src/**/*.stories.{ts,tsx}'],
     },
     projects: [
       {
         test: {
           name: 'app',
-          include: ['src/**/__tests__/**/*.{test,spec}.{ts,tsx}'],
+          include: ['**/__tests__/*.{test,spec}.{ts,tsx}'],
           exclude: [
             '**/node_modules/**',
             '**/dist/**',
@@ -63,24 +71,6 @@ export default defineConfig({
             configDir: path.join(dirname, '.storybook'),
           }),
         ],
-      },
-      {
-        test: {
-          name: 'e2e',
-          include: ['**/e2e/**/*.{test,spec}.{ts,tsx}'],
-          exclude: [
-            '**/node_modules/**',
-            '**/dist/**',
-            '**/.{idea,git,cache,output,temp}/**',
-          ],
-          browser: {
-            enabled: true,
-            provider: 'playwright',
-            headless: true,
-            instances: [{ browser: 'chromium' }],
-          },
-          setupFiles: ['./e2e/setup.ts'],
-        },
       },
     ],
   },

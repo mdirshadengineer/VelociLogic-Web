@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import Page from '../page';
+import Page from '../src/app/page';
 
 import React from 'react';
 

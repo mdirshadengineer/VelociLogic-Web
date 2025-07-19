@@ -1,22 +1,31 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './src/e2e',
-  testMatch: ['**/*.spec.ts', '**/*.test.ts'], // Explicitly match test files
+  testDir: './__e2e__',
+  testMatch: '**/*.e2e-spec.ts',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  timeout: 30000,
   use: {
-    baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry',
+    headless: process.env.CI ? true : false,
+    viewport: { width: 1280, height: 720 },
+    actionTimeout: 10000,
+    navigationTimeout: 20000,
+    baseURL: 'http://localhost:3000', // Adjust based on your dev server
+    trace: 'on-first-retry', // Collect trace for debugging
+    video: 'retain-on-failure', // Record video on failure
+    screenshot: 'only-on-failure', // Take screenshots on failure
   },
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+  ],
+  reporter: [
+    ['list'],
+    ['html', { open: 'never', outputFolder: 'playwright-report' }],
   ],
   webServer: {
     command: 'npm run dev',
