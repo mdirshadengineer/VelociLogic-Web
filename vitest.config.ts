@@ -34,9 +34,9 @@ export default defineConfig({
       reporter: ['text', 'html', 'lcov'],
       include: [
         'src/**/*.{ts,tsx}',
-        '__tests__/**/*.{ts,tsx}',
-        '__e2e__/**/*.{ts,tsx}',
-        '__integrations__/**/*.{ts,tsx}',
+        'src/__tests__/**/*.spec.{ts,tsx}',
+        'src/__e2e__/**/*.e2e-spec.{ts,tsx}',
+        'src/__integrations__/**/*.test.{ts,tsx}',
       ],
       exclude: ['src/**/*.stories.{ts,tsx}'],
     },
@@ -44,7 +44,7 @@ export default defineConfig({
       {
         test: {
           name: 'app',
-          include: ['**/__tests__/*.{test,spec}.{ts,tsx}'],
+          include: ['src/__tests__/*.spec.{ts,tsx}'],
           exclude: [
             '**/node_modules/**',
             '**/dist/**',
