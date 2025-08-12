@@ -20,7 +20,7 @@
   "homepage": "https://mdirshad.vercel.app",
   "scripts": {
     "prepare": "husky",
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
