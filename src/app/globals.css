@@ -116,6 +116,18 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen antialiased;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* stop scrolling */
+    overscroll-behavior-y: none; /* block vertical overscroll */
+    touch-action: none; /* block touch-driven pull */
   }
 }
