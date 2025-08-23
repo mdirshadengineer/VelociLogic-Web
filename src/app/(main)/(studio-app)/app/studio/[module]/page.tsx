@@ -11,11 +11,11 @@ export default async function StudioModulePage({
   params,
   searchParams,
 }: {
-  params: { module: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ module: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const { module } = params;
-  const queryParameters = searchParams;
+  const { module } = await params;
+  const queryParameters = await searchParams;
   console.log('Module params:', module);
   return (
     <div id="module-page">

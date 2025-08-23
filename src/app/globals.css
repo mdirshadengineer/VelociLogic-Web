@@ -125,9 +125,6 @@
   body {
     height: 100%;
     margin: 0;
-    padding: 0;
-    overflow: hidden; /* stop scrolling */
-    overscroll-behavior-y: none; /* block vertical overscroll */
-    touch-action: none; /* block touch-driven pull */
+    padding: 0;    
   }
 }

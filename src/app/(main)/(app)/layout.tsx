@@ -1,6 +1,7 @@
 import { SidebarInset, SidebarProvider } from 'shared/ui/sidebar';
 
-import { VelociLogicAppSidebar } from './_components/app-sidebar';
+import { VelociLogicAppSidebar } from 'src/app/(main)/(app)/_components/sidebar/app-sidebar';
+import { VelociLogicAppHeader } from './_components/header/app-header';
 
 export default function VelociLogicAppLayout({
   children,
@@ -14,12 +15,15 @@ export default function VelociLogicAppLayout({
         style={
           {
             '--sidebar-width': 'calc(var(--spacing) * 72)',
-            '--header-height': 'calc(var(--spacing) * 12)',
+            '--header-height': 'calc(var(--spacing) * 16)',
           } as React.CSSProperties
         }
       >
         <VelociLogicAppSidebar variant="inset" />
-        <SidebarInset>{children}</SidebarInset>
+        <SidebarInset>
+          <VelociLogicAppHeader />
+          {children}
+        </SidebarInset>
       </SidebarProvider>
     </div>
   );
